@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>메뉴 선택</title>
+</head>
+<body>
+<table class="tb_col">
+    <tr>
+        <th>이름</th>
+        <th>카테고리</th>
+        <th>최근 선택 여부</th>
+    </tr>
+    <tr th:each="menu : ${list}">
+        <td th:text="${menu.menuName}"></td>
+        <td th:text="${menu.menuCategory}"></td>
+        <td th:text="${menu.chkYn}"></td>
+    </tr>
+</table>
+</body>
+</html>
