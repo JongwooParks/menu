@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>메뉴 선택</title>
+</head>
+<body>
+<table class="tb_col">
+    <tr>
+        <th>seq</th>
+        <th>name</th>
+        <th>price</th>
+        <th>quantity</th>
+    </tr>
+    <tr th:each="product : ${productList}">
+        <td th:text="${product.seq}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.quantity}"></td>
+    </tr>
+</table>
+</body>
+</html>
