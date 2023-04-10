@@ -72,7 +72,11 @@
     <tr th:each="menu : ${list}">
         <td th:text="${menu.menuName}"></td>
         <td th:text="${menu.menuCategory}"></td>
-        <td th:text="${menu.chkYn}"></td>
+        <th:block th:switch="${menu.chkYn}">
+            <td th:case="2">2번째 전</td>
+            <td th:case="1">1번째 전</td>
+            <td th:case="*"></td>
+        </th:block>
     </tr>
 
     <button>오늘의 메뉴는?</button>
@@ -105,7 +109,7 @@
 </table>
 </body>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="/static/js/menu.js"></script>
+<script src="/js/menu.js"></script>
 <script>
     menu.init();
 </script>
