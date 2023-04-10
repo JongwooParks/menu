@@ -15,6 +15,12 @@ var menu = {
         $("#register_menu").on("click",function (){
            menu.fn.modalOpen();
         });
+
+        $(".close-area").on("click",function(){
+            $("input[name='menuName']").val("");
+            $('#menuCategory').val('none').prop("selected",true);
+            menu.fn.modalClose();
+        })
     },
 
     fn : {
