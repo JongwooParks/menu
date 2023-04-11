@@ -21,6 +21,9 @@ var menu = {
             $('#menuCategory').val('none').prop("selected",true);
             menu.fn.modalClose();
         })
+        $("#menuRegisterBtn").on("click",function(){
+            menu.fn.insertMenu();
+        })
     },
 
     fn : {
@@ -29,6 +32,11 @@ var menu = {
         },
         modalOpen : function(){
             $("#modal").show();
+        },
+        insertMenu: function(){
+            let menuName = $("input[name='menuName']").val().trim();
+            let menuCategory = $("#menuCategory").val().trim();
+
         }
 
     }
