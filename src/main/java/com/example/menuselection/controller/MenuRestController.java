@@ -2,6 +2,9 @@ package com.example.menuselection.controller;
 
 import com.example.menuselection.domain.Menu;
 import com.example.menuselection.domain.MenuDTO;
+import com.example.menuselection.service.MenuService;
+import com.example.menuselection.service.MenuServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -16,15 +19,22 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/menu")
+@RequiredArgsConstructor
 public class MenuRestController {
-
+    private final MenuService service;
 
     @PutMapping("/validate")
     public ResponseEntity<?> validateMenu(MenuDTO data, BindingResult result){
+
         if(result.hasErrors()){
            return checkError(result);
         }
-        return new ResponseEntity<MenuDTO>(data,HttpStatus.OK);
+        try{
+            int code = service.validateMenu(data);
+            return new ResponseEntity<Integer>(code,HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+        }
     }
     @PostMapping("/register")
     public ResponseEntity<?> insert(MenuDTO data, BindingResult result){

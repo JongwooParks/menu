@@ -10,4 +10,6 @@ public interface MenuService {
     public List<MenuDTO> selectAll(MenuDTO dto);
 
     public int insertMenu(MenuDTO dto);
+
+    public int validateMenu(MenuDTO dto);
 }
