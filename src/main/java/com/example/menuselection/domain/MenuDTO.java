@@ -15,4 +15,9 @@ public class MenuDTO {
     private String chkYn;
     private String menuSelect;
     private String menuCategory;
+
+    public Menu toEntity(){
+        com.example.menuselection.domain.Menu menu = new com.example.menuselection.domain.Menu();
+        return menu;
+    }
 }

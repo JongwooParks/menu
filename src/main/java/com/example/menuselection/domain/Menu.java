@@ -1,14 +1,15 @@
 package com.example.menuselection.domain;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="our_menu")
-@Data
+@Getter @Setter @ToString
+@NoArgsConstructor
 public class Menu {
-    @Id @GeneratedValue()
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="menu_id")
     private Long menuId;
     @Column(name="menu_name")
@@ -30,4 +31,11 @@ public class Menu {
         return dto;
     }
 
+    @Builder
+    public Menu(String menuName, String chkYn, String menuSelect, String menuCategory) {
+        this.menuName = menuName;
+        this.chkYn = chkYn;
+        this.menuSelect = menuSelect;
+        this.menuCategory = menuCategory;
+    }
 }
