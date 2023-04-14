@@ -24,7 +24,7 @@ public class MenuRestController {
 
     @GetMapping("/show")
     public ResponseEntity<?> showAllMenu(){
-        List<MenuDTO> list = null;
+        List<MenuDTO> list = service.selectAll();
         try {
             list = service.selectAll();
         } catch (Exception e) {

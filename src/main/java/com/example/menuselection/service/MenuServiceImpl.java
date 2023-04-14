@@ -27,6 +27,8 @@ public class MenuServiceImpl implements MenuService{
         if(notF.size()>=2){
             list.get(0).setExceptSelect("마지막 선택");
             list.get(1).setExceptSelect("2번째 전 선택");
+        }else if(notF.size()==1){
+            list.get(0).setExceptSelect("마지막 선택");
         }
         return list;
     }

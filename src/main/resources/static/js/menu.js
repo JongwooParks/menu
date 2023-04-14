@@ -9,6 +9,7 @@ var menu = {
 
     beforeBind : function(){
         this.fn.modalClose();
+        menu.fn.showAllMenu();
     },
 
     bind : function(){
@@ -42,7 +43,25 @@ var menu = {
                 type:'get',
                 success : function (data, statusText, jqXHR){
                     if(!data){
-
+                        let text = '';
+                        text +=`<tr className="tb_head">`
+                        text +=`<th>이름</th>`
+                        text +=`<th>카테고리</th>`
+                        text +=`<th>최근 선택 날짜</th>`
+                        text +=`<th>제외 대상</th>`
+                        text +=`</tr>`
+                        $(data).each((i,item)=>{
+                            text += `<tr className="tb_list">`;
+                            text += `<td>`+item.menuName+`</td>`
+                            text += `<td>`+item.menuCategory+`</td>`
+                            text += `<td>`+item.selectDate+`</td>`
+                            if(!item.exceptSelect){
+                                text += `<td></td>`
+                            }
+                            text += `<td>`+item.exceptSelect+`</td>`
+                            text += `</tr>`;
+                        })
+                        $(".tb_col").next(text);
                     }
                 },
                 error : function (jqXHR, textStatus, errorThrown){
