@@ -41,8 +41,13 @@ public class MenuRestController {
         if(result.hasErrors()){
             return checkError(result);
         }
+        if(data == null){
+            return new ResponseEntity<Integer>(-1,HttpStatus.BAD_REQUEST);
+        }
+
         return new ResponseEntity<MenuDTO>(data,HttpStatus.OK);
     }
+
 
     public ResponseEntity<?> checkError(BindingResult result){
         Map<String, String> errorMap = new HashMap<>();

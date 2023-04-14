@@ -14,8 +14,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MenuServiceImpl implements MenuService{
     private final MyMenuRepository repository;
-    public static final int SUCCESS_CODE = 1;
     public static final int ERROR_CODE = 0;
+    public static final int SUCCESS_CODE = 1;
+    public static final int VALIDATE = 2;
+    public static final int NOT_VALIDATE = 3;
 
     @Override
     public List<MenuDTO> selectAll(MenuDTO dto) {
@@ -23,7 +25,7 @@ public class MenuServiceImpl implements MenuService{
     }
 
     @Override
-    public int insertMenu(MenuDTO dto) {
+    public int registerMenu(MenuDTO dto) {
         return 0;
     }
 
@@ -32,8 +34,8 @@ public class MenuServiceImpl implements MenuService{
         String name = dto.getMenuName().trim();
         Optional<Menu> optional = repository.findMenuByMenuName(name);
         if(optional.isPresent()){
-            return ERROR_CODE;
+            return VALIDATE;
         }
-        return SUCCESS_CODE;
+        return NOT_VALIDATE;
     }
 }
