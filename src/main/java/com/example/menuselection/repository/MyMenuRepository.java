@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface MyMenuRepository extends JpaRepository<Menu,Long> {
     public Optional<Menu> findMenuByMenuName(String name);
 
-    public List<Menu> findAllByOrderBySelectDateDesc();
+    public List<Menu> findAllByOrderByMenuSelectDescSelectDateDesc();
 
 }

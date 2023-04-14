@@ -6,6 +6,10 @@ import com.example.menuselection.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @SpringBootTest
 public class Test {
     @Autowired
@@ -39,7 +43,18 @@ public class Test {
     @org.junit.jupiter.api.Test
     public void test3(){
         System.out.println("11111111111111111111111111111111");
-        System.out.println(repository.findAllByOrderBySelectDateDesc());
+        System.out.println(repository.findAllByOrderByMenuSelectDescSelectDateDesc());
         System.out.println("11111111111111111111111111111111");
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test4(){
+        List<String> list = new ArrayList<>();
+        list.add("N");
+        list.add("N");
+        list.add("F");
+        list.add("N");
+        list.add("Y");
+        System.out.println(list.stream().filter(i->i!= "F").collect(Collectors.toList()));
     }
 }
