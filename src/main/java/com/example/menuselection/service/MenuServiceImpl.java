@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,13 +21,21 @@ public class MenuServiceImpl implements MenuService{
     public static final int NOT_VALIDATE = 3;
 
     @Override
-    public List<MenuDTO> selectAll(MenuDTO dto) {
-        return null;
+    public List<MenuDTO> selectAll() {
+        List<MenuDTO> list =  repository.findAllByOrderBySelectDateDesc().stream().map(Menu::toDTO).collect(Collectors.toList());
+        if(list.size()>=2){
+            list.get(0).setExceptSelect("마지막 선택");
+            list.get(1).setExceptSelect("2번째 전 선택");
+        }
+
+        return
     }
 
     @Override
-    public int registerMenu(MenuDTO dto) {
-        return 0;
+    public MenuDTO registerMenu(MenuDTO dto) {
+        Menu entity = dto.toEntity();
+       Menu menu = repository.save(entity);
+        return menu.toDTO();
     }
 
     @Override

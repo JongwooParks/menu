@@ -9,12 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -22,6 +21,17 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class MenuRestController {
     private final MenuService service;
+
+    @GetMapping("/show")
+    public ResponseEntity<?> showAllMenu(){
+        List<MenuDTO> list = null;
+        try {
+            list = service.selectAll();
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+        }
+        return new ResponseEntity<List<MenuDTO>>(list,HttpStatus.OK);
+    }
 
     @PutMapping("/validate")
     public ResponseEntity<?> validateMenu(MenuDTO data, BindingResult result){
@@ -38,14 +48,17 @@ public class MenuRestController {
     }
     @PostMapping("/register")
     public ResponseEntity<?> insert(MenuDTO data, BindingResult result){
+        int code = 0;
         if(result.hasErrors()){
             return checkError(result);
         }
         if(data == null){
             return new ResponseEntity<Integer>(-1,HttpStatus.BAD_REQUEST);
         }
-
-        return new ResponseEntity<MenuDTO>(data,HttpStatus.OK);
+        if(service.registerMenu(data) != null){
+            code = 1;
+        }
+        return new ResponseEntity<Integer>(code,HttpStatus.OK);
     }
 
 

@@ -35,4 +35,11 @@ public class Test {
         System.out.println(service.validateMenu(menuDTO2));
         System.out.println("1111111111111111111");
     }
+
+    @org.junit.jupiter.api.Test
+    public void test3(){
+        System.out.println("11111111111111111111111111111111");
+        System.out.println(repository.findAllByOrderBySelectDateDesc());
+        System.out.println("11111111111111111111111111111111");
+    }
 }

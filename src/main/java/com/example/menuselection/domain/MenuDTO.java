@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
+import java.time.LocalDate;
 
 @Component
 @Getter @Setter
@@ -12,12 +13,18 @@ import javax.persistence.Column;
 public class MenuDTO {
     private Long menuId;
     private String menuName;
-    private String chkYn;
+    private LocalDate selectDate;
     private String menuSelect;
     private String menuCategory;
 
+    private String exceptSelect;
+
     public Menu toEntity(){
-        com.example.menuselection.domain.Menu menu = new com.example.menuselection.domain.Menu();
+        Menu menu = Menu.builder()
+                .menuCategory(this.menuCategory)
+                .menuName(this.menuName)
+                .selectDate(this.selectDate)
+                .menuSelect(this.menuSelect).build();
         return menu;
     }
 }

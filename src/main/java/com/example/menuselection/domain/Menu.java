@@ -3,6 +3,7 @@ package com.example.menuselection.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="our_menu")
@@ -14,8 +15,8 @@ public class Menu {
     private Long menuId;
     @Column(name="menu_name")
     private String menuName;
-    @Column(name="chkYn")
-    private String chkYn;
+    @Column(name="select_date")
+    private LocalDate selectDate;
     @Column(name="menu_select")
     private String menuSelect;
     @Column(name="menu_category")
@@ -26,15 +27,15 @@ public class Menu {
         dto.setMenuId(this.menuId);
         dto.setMenuName(this.menuName);
         dto.setMenuSelect(this.menuSelect);
-        dto.setChkYn(this.chkYn);
+        dto.setSelectDate(this.selectDate);
         dto.setMenuCategory(this.menuCategory);
         return dto;
     }
 
     @Builder
-    public Menu(String menuName, String chkYn, String menuSelect, String menuCategory) {
+    public Menu(String menuName, LocalDate selectDate, String menuSelect, String menuCategory) {
         this.menuName = menuName;
-        this.chkYn = chkYn;
+        this.selectDate=selectDate;
         this.menuSelect = menuSelect;
         this.menuCategory = menuCategory;
     }

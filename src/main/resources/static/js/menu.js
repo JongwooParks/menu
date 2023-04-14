@@ -36,6 +36,21 @@ var menu = {
         modalOpen : function(){
             $("#modal").show();
         },
+        showAllMenu : function(){
+            $.ajax({
+                url:'/menu/show',
+                type:'get',
+                success : function (data, statusText, jqXHR){
+                    if(!data){
+
+                    }
+                },
+                error : function (jqXHR, textStatus, errorThrown){
+                    alert('오류가 발생하였습니다. 해당 원인 : '+jqXHR.responseText);
+                }
+
+            })
+        },
         registerMenu: function(){
             let menuName = $("input[name='menuName']").val().trim();
             let menuCategory = $("#menuCategory").val().trim();
@@ -48,7 +63,9 @@ var menu = {
                 type:'post',
                 data:{menuName:menuName,menuCategory:menuCategory},
                 success : function (data, statusText, jqXHR){
-
+                    if(data==1){
+                          menu.fn.showAllMenu();
+                    }
                 },
                 error : function (jqXHR, textStatus, errorThrown){
                     alert('오류가 발생하였습니다. 해당 원인 : '+jqXHR.responseText);
@@ -81,3 +98,10 @@ var menu = {
     }
 
 }
+
+/*
+success : function (data, statusText, jqXHR){
+},
+error : function (jqXHR, textStatus, errorThrown){
+    alert('오류가 발생하였습니다. 해당 원인 : '+jqXHR.responseText);
+}*/

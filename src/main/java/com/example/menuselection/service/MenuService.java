@@ -1,5 +1,6 @@
 package com.example.menuselection.service;
 
+import com.example.menuselection.domain.Menu;
 import com.example.menuselection.domain.MenuDTO;
 import org.springframework.stereotype.Service;
 
@@ -7,9 +8,9 @@ import java.util.List;
 
 @Service
 public interface MenuService {
-    public List<MenuDTO> selectAll(MenuDTO dto);
+    public List<MenuDTO> selectAll();
 
-    public int registerMenu(MenuDTO dto);
+    public MenuDTO registerMenu(MenuDTO dto);
 
     public int validateMenu(MenuDTO dto);
 }
