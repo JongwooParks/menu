@@ -56,7 +56,11 @@ var menu = {
                             text += `<tr class="tb_list">`;
                             text += `<td>`+item.menuName+`</td>`
                             text += `<td>`+item.menuCategory+`</td>`
-                            text += `<td>`+item.selectDate+`</td>`
+                            if(!item.selectDate | item.selectDate == null | item.selectDate =='null'){
+                                text += `<td></td>`
+                            }else{
+                                text += `<td>`+item.selectDate+`</td>`
+                            }
                             if(!item.exceptSelect | item.exceptSelect == null | item.exceptSelect =='null'){
                                 text += `<td></td>`
                             }else{
@@ -88,7 +92,10 @@ var menu = {
                 data:{menuName:menuName,menuCategory:menuCategory},
                 success : function (data, statusText, jqXHR){
                     if(data==1){
-                          menu.fn.showAllMenu();
+                        $("input[name='menuName']").val("");
+                        $('#menuCategory').val('none').prop("selected",true);
+                        menu.fn.modalClose();
+                        menu.fn.showAllMenu();
                     }
                 },
                 error : function (jqXHR, textStatus, errorThrown){

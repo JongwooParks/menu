@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,6 +36,8 @@ public class MenuServiceImpl implements MenuService{
 
     @Override
     public MenuDTO registerMenu(MenuDTO dto) {
+        dto.setRegDt(LocalDate.now());
+        dto.setMenuSelect("F");
         Menu entity = dto.toEntity();
        Menu menu = repository.save(entity);
         return menu.toDTO();
