@@ -61,6 +61,18 @@ public class MenuRestController {
         return new ResponseEntity<Integer>(code,HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(String menuId, BindingResult result){
+        int code = 0;
+        if(result.hasErrors()){
+            return checkError(result);
+        }
+        if(menuId == null || menuId.equals("")){
+            return new ResponseEntity<Integer>(-1,HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<Integer>(code,HttpStatus.OK);
+    }
 
     public ResponseEntity<?> checkError(BindingResult result){
         Map<String, String> errorMap = new HashMap<>();

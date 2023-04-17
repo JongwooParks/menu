@@ -132,7 +132,16 @@ var menu = {
         },
         delete : function(obj){
             let id = $(obj).data("id").trim();
-
+            $.ajax({
+                url:"",
+                data:{menuId: id},
+                type:'delete',
+                success : function (data, statusText, jqXHR){
+                },
+                error : function (jqXHR, textStatus, errorThrown){
+                    alert('오류가 발생하였습니다. 해당 원인 : '+jqXHR.responseText);
+                }
+            })
         }
 
     }
