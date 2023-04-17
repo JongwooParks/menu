@@ -28,6 +28,9 @@ var menu = {
         $("input[name='menuName']").on('change',function(){
             menu.fn.validate();
         })
+        $(".tb_col").on("click",".menu_delete_btn",function (){
+            menu.fn.delete(this);
+        })
     },
 
     fn : {
@@ -51,6 +54,7 @@ var menu = {
                         text +=`<th>최근 선택 날짜</th>`
                         text +=`<th>제외 대상</th>`
                         text +=`<th>등록 날짜</th>`
+                        text +=`<th></th>`
                         text +=`</tr>`
                         $(data).each((i,item)=>{
                             text += `<tr class="tb_list">`;
@@ -67,6 +71,7 @@ var menu = {
                                 text += `<td>`+item.exceptSelect+`</td>`
                             }
                             text +=`<td>`+item.regDt+`</td>`
+                            text +=`<td><input type="button" class="menu_delete_btn" data-id="`+item.menuId+`" value="삭제"></td>`
                             text += `</tr>`;
                         })
                         text += '</tbody>'
@@ -124,6 +129,10 @@ var menu = {
                     alert('오류가 발생하였습니다. 해당 원인 : '+jqXHR.responseText);
                 }
             })
+        },
+        delete : function(obj){
+            let id = $(obj).data("id").trim();
+
         }
 
     }
