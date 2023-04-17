@@ -43,7 +43,7 @@ public class Test {
     @org.junit.jupiter.api.Test
     public void test3(){
         System.out.println("11111111111111111111111111111111");
-        System.out.println(repository.findAllByOrderByMenuSelectDescSelectDateDesc());
+        System.out.println(repository.findAllByOrderByMenuSelectDescSelectDateDescRegDtDesc());
         System.out.println("11111111111111111111111111111111");
     }
 

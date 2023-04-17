@@ -50,6 +50,7 @@ var menu = {
                         text +=`<th>카테고리</th>`
                         text +=`<th>최근 선택 날짜</th>`
                         text +=`<th>제외 대상</th>`
+                        text +=`<th>등록 날짜</th>`
                         text +=`</tr>`
                         $(data).each((i,item)=>{
                             text += `<tr class="tb_list">`;
@@ -61,6 +62,7 @@ var menu = {
                             }else{
                                 text += `<td>`+item.exceptSelect+`</td>`
                             }
+                            text +=`<td>`+item.regDt+`</td>`
                             text += `</tr>`;
                         })
                         text += '</tbody>'

@@ -22,7 +22,7 @@ public class MenuServiceImpl implements MenuService{
 
     @Override
     public List<MenuDTO> selectAll() {
-        List<MenuDTO> list =  repository.findAllByOrderByMenuSelectDescSelectDateDesc().stream().map(Menu::toDTO).collect(Collectors.toList());
+        List<MenuDTO> list =  repository.findAllByOrderByMenuSelectDescSelectDateDescRegDtDesc().stream().map(Menu::toDTO).collect(Collectors.toList());
         List<MenuDTO> notF = list.stream().filter(i->!i.getMenuSelect().equals("F")).collect(Collectors.toList());
         if(notF.size()>=2){
             list.get(0).setExceptSelect("마지막 선택");
