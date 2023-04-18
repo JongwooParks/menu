@@ -62,14 +62,15 @@ public class MenuRestController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(String menuId, BindingResult result){
+
+    public ResponseEntity<?> delete(@PathVariable("id") Long id){
         int code = 0;
-        if(result.hasErrors()){
-            return checkError(result);
-        }
-        if(menuId == null || menuId.equals("")){
+
+        if(id == null || id == 0){
             return new ResponseEntity<Integer>(-1,HttpStatus.BAD_REQUEST);
         }
+
+        code = service.deleteMenu(id);
 
         return new ResponseEntity<Integer>(code,HttpStatus.OK);
     }

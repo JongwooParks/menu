@@ -131,17 +131,22 @@ var menu = {
             })
         },
         delete : function(obj){
-            let id = $(obj).data("id").trim();
+            console.log(obj);
+            let id = $(obj).data("id");
             $.ajax({
-                url:"",
-                data:{menuId: id},
+                url:"/menu/"+id,
                 type:'delete',
                 success : function (data, statusText, jqXHR){
+                    if(data==0){
+                        alert("삭제가 완료되었습니다.")
+                        menu.fn.showAllMenu();
+                    }
                 },
                 error : function (jqXHR, textStatus, errorThrown){
                     alert('오류가 발생하였습니다. 해당 원인 : '+jqXHR.responseText);
                 }
             })
+
         }
 
     }

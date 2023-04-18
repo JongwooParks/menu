@@ -52,4 +52,12 @@ public class MenuServiceImpl implements MenuService{
         }
         return NOT_VALIDATE;
     }
+
+    @Override
+    public int deleteMenu(Long menuId) {
+        repository.deleteById(menuId);
+        return 0;
+    }
+
+
 }

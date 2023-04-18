@@ -13,4 +13,6 @@ public interface MenuService {
     public MenuDTO registerMenu(MenuDTO dto);
 
     public int validateMenu(MenuDTO dto);
+
+    public int deleteMenu(Long menuId);
 }
