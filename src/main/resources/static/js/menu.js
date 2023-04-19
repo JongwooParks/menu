@@ -31,6 +31,9 @@ var menu = {
         $(".tb_col").on("click",".menu_delete_btn",function (){
             menu.fn.delete(this);
         })
+        $("#selectTodayMenu").on("click",function (){
+            menu.fn.selectTodayMenu();
+        })
     },
 
     fn : {
@@ -147,8 +150,23 @@ var menu = {
                 }
             })
 
-        }
+        },
 
+        selectTodayMenu : function(){
+            $.ajax({
+                url:"/menu/choice",
+                type:"get",
+                success : function (data, statusText, jqXHR){
+                   if(data[1]){
+                        $("#choiceMenuName").html(data[1].menuName);
+                   }
+
+                },
+                error : function (jqXHR, textStatus, errorThrown){
+                        alert('오류가 발생하였습니다. 해당 원인 : '+jqXHR.responseText);
+                }
+            })
+        }
     }
 
 }

@@ -15,4 +15,6 @@ public interface MenuService {
     public int validateMenu(MenuDTO dto);
 
     public int deleteMenu(Long menuId);
+
+    public MenuDTO choice();
 }

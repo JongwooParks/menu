@@ -62,7 +62,6 @@ public class MenuRestController {
     }
 
     @DeleteMapping("/{id}")
-
     public ResponseEntity<?> delete(@PathVariable("id") Long id){
         int code = 0;
 
@@ -73,6 +72,26 @@ public class MenuRestController {
         code = service.deleteMenu(id);
 
         return new ResponseEntity<Integer>(code,HttpStatus.OK);
+    }
+
+    @GetMapping("/choice")
+    public ResponseEntity<?> choice(){
+
+        int code = 1;
+        try {
+            MenuDTO dto = service.choice();
+            Map<Integer,MenuDTO> result = new HashMap<>();
+            result.put(code,dto);
+
+            return new ResponseEntity<Map>(result,HttpStatus.OK);
+
+        } catch (Exception e) {
+            code = -1;
+            Map<Integer,String> errors = new HashMap<>();
+            errors.put(code,e.getMessage());
+
+            return new ResponseEntity<Map>(errors,HttpStatus.BAD_REQUEST);
+        }
     }
 
     public ResponseEntity<?> checkError(BindingResult result){

@@ -57,4 +57,5 @@ public class Test {
         list.add("Y");
         System.out.println(list.stream().filter(i->i!= "F").collect(Collectors.toList()));
     }
+
 }

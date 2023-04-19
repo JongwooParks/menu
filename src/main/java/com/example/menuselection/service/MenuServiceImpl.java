@@ -2,6 +2,7 @@ package com.example.menuselection.service;
 
 import com.example.menuselection.domain.Menu;
 import com.example.menuselection.domain.MenuDTO;
+import com.example.menuselection.repository.MyMenuCustomRepository;
 import com.example.menuselection.repository.MyMenuRepository;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MenuServiceImpl implements MenuService{
     private final MyMenuRepository repository;
+    private final MyMenuCustomRepository customRepository;
     public static final int ERROR_CODE = 0;
     public static final int SUCCESS_CODE = 1;
     public static final int VALIDATE = 2;
@@ -57,6 +59,12 @@ public class MenuServiceImpl implements MenuService{
     public int deleteMenu(Long menuId) {
         repository.deleteById(menuId);
         return 0;
+    }
+
+    @Override
+    public MenuDTO choice() {
+        List<MenuDTO> list = customRepository.selectLastSelect().stream().map(Menu::toDTO).collect(Collectors.toList());
+        return customRepository.choice(list).toDTO();
     }
 
 
