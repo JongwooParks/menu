@@ -43,6 +43,21 @@ var menu = {
         modalOpen : function(){
             $("#modal").show();
         },
+        leftPad : function (value) {
+            if (value >= 10) {
+                return value;
+            }
+            return `0${value}`;
+        },
+        parseFormatDate: function(obj){
+            date = new Date(obj);
+            delimiter = '-';
+            year =  date.getFullYear();
+            month = menu.fn.leftPad(date.getMonth()+1);
+            day = menu.fn.leftPad(date.getDate());
+
+            return [year, month, day].join(delimiter);
+        },
         showAllMenu : function(){
             $.ajax({
                 url:'/menu/show',
@@ -60,13 +75,14 @@ var menu = {
                         text +=`<th></th>`
                         text +=`</tr>`
                         $(data).each((i,item)=>{
+
                             text += `<tr class="tb_list">`;
                             text += `<td>`+item.menuName+`</td>`
                             text += `<td>`+item.menuCategory+`</td>`
                             if(!item.selectDate | item.selectDate == null | item.selectDate =='null'){
                                 text += `<td></td>`
                             }else{
-                                text += `<td>`+item.selectDate+`</td>`
+                                text += `<td>`+menu.fn.parseFormatDate(item.selectDate)+`</td>`
                             }
                             if(!item.exceptSelect | item.exceptSelect == null | item.exceptSelect =='null'){
                                 text += `<td></td>`
