@@ -10,4 +10,7 @@ public interface MyMenuCustomRepository {
     public Menu choice(List<MenuDTO> list);
 
     public List<Menu> selectLastSelect();
+
+    public List<Menu> selectMenuSelectY();
+
 }

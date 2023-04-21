@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -62,10 +64,25 @@ public class MenuServiceImpl implements MenuService{
     }
 
     @Override
+    @Transactional
     public MenuDTO choice() {
         List<MenuDTO> list = customRepository.selectLastSelect().stream().map(Menu::toDTO).collect(Collectors.toList());
-        return customRepository.choice(list).toDTO();
+        MenuDTO dto = customRepository.choice(list).toDTO();
+        Optional<Menu> optionalMenu = repository.findById(dto.getMenuId());
+        if(optionalMenu.isEmpty()){
+            return null;
+        }
+
+        customRepository.selectMenuSelectY().forEach(i->i.setMenuSelect("N"));
+
+        Menu menu = optionalMenu.get();
+        menu.setMenuSelect("Y");
+        menu.setSelectDate(LocalDate.now());
+
+        return dto;
     }
+
+
 
 
 }

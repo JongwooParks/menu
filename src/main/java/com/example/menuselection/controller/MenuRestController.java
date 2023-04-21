@@ -81,8 +81,13 @@ public class MenuRestController {
         try {
             MenuDTO dto = service.choice();
             Map<Integer,MenuDTO> result = new HashMap<>();
-            result.put(code,dto);
+            if(dto == null){
+                code = 0;
+                result.put(code,null);
+                return new ResponseEntity<Map>(result,HttpStatus.OK);
+            }
 
+            result.put(code,dto);
             return new ResponseEntity<Map>(result,HttpStatus.OK);
 
         } catch (Exception e) {

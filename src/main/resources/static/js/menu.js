@@ -157,9 +157,14 @@ var menu = {
                 url:"/menu/choice",
                 type:"get",
                 success : function (data, statusText, jqXHR){
-                   if(data[1]){
+                    if(data[0]){
+                        alert("로직 오류 발생... 신속히 해결하겠습니다.")
+                        return;
+                    }
+                    if(data[1]){
                         $("#choiceMenuName").html(data[1].menuName);
-                   }
+                        menu.fn.showAllMenu();
+                    }
 
                 },
                 error : function (jqXHR, textStatus, errorThrown){

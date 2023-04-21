@@ -41,4 +41,12 @@ public class MyMenuCustomRepositoryImpl implements MyMenuCustomRepository {
                 .orderBy(menu.selectDate.desc()).limit(2).fetch();
         return list;
     }
+
+    @Override
+    public List<Menu> selectMenuSelectY() {
+        List<Menu> list = factory.selectFrom(menu).where(menu.menuSelect.eq("Y")).fetch();
+        return list;
+    }
+
+
 }
