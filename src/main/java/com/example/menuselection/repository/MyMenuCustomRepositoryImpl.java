@@ -37,8 +37,8 @@ public class MyMenuCustomRepositoryImpl implements MyMenuCustomRepository {
 
     @Override
     public List<Menu> selectLastSelect() {
-        List<Menu> list = factory.selectFrom(menu).where(menu.selectDate.isNotNull())
-                .orderBy(menu.selectDate.desc()).limit(2).fetch();
+        List<Menu> list = factory.selectFrom(menu)
+                .orderBy(menu.menuSelect.desc(),menu.selectDate.desc(),menu.regDt.desc()).limit(2).fetch();
         return list;
     }
 

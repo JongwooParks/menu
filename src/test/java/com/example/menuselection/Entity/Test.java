@@ -1,6 +1,7 @@
 package com.example.menuselection.Entity;
 
 import com.example.menuselection.domain.MenuDTO;
+import com.example.menuselection.repository.MyMenuCustomRepository;
 import com.example.menuselection.repository.MyMenuRepository;
 import com.example.menuselection.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class Test {
     private MyMenuRepository repository;
     @Autowired
     private MenuService service;
+    @Autowired
+    private MyMenuCustomRepository customRepository;
     @org.junit.jupiter.api.Test
     public void test(){
         System.out.println("==========================");
@@ -56,6 +59,11 @@ public class Test {
         list.add("N");
         list.add("Y");
         System.out.println(list.stream().filter(i->i!= "F").collect(Collectors.toList()));
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test5(){
+        System.out.println(customRepository.selectLastSelect());
     }
 
 }

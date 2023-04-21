@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.swing.text.html.Option;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -40,7 +41,7 @@ public class MenuServiceImpl implements MenuService{
 
     @Override
     public MenuDTO registerMenu(MenuDTO dto) {
-        dto.setRegDt(LocalDate.now());
+        dto.setRegDt(LocalDateTime.now());
         dto.setMenuSelect("F");
         Menu entity = dto.toEntity();
        Menu menu = repository.save(entity);
@@ -77,7 +78,7 @@ public class MenuServiceImpl implements MenuService{
 
         Menu menu = optionalMenu.get();
         menu.setMenuSelect("Y");
-        menu.setSelectDate(LocalDate.now());
+        menu.setSelectDate(LocalDateTime.now());
 
         return dto;
     }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Component
 @Getter @Setter
@@ -13,11 +14,11 @@ import java.time.LocalDate;
 public class MenuDTO {
     private Long menuId;
     private String menuName;
-    private LocalDate selectDate;
+    private LocalDateTime selectDate;
     private String menuSelect;
     private String menuCategory;
 
-    private LocalDate regDt;
+    private LocalDateTime regDt;
 
     private String exceptSelect;
 

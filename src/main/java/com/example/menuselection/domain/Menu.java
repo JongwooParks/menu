@@ -5,6 +5,7 @@ import net.bytebuddy.asm.Advice;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="our_menu")
@@ -17,13 +18,13 @@ public class Menu {
     @Column(name="menu_name")
     private String menuName;
     @Column(name="select_date")
-    private LocalDate selectDate;
+    private LocalDateTime selectDate;
     @Column(name="menu_select")
     private String menuSelect;
     @Column(name="menu_category")
     private String menuCategory;
     @Column(name="reg_dt")
-    private LocalDate regDt;
+    private LocalDateTime regDt;
 
     public MenuDTO toDTO(){
         MenuDTO dto = new MenuDTO();
@@ -37,7 +38,7 @@ public class Menu {
     }
 
     @Builder
-    public Menu(String menuName, LocalDate selectDate, String menuSelect, String menuCategory, LocalDate regDt) {
+    public Menu(String menuName, LocalDateTime selectDate, String menuSelect, String menuCategory, LocalDateTime regDt) {
         this.menuName = menuName;
         this.selectDate=selectDate;
         this.menuSelect = menuSelect;
